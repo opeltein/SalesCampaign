@@ -9,11 +9,7 @@ namespace SalesCampaign.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        // GET: api/<ProductsController>
-        [HttpGet("Products")]
-        public async Task<ActionResult<List<Products>>> Get(int page = 0, int pageSize = 10)
-        {
-            var products = new List<Products>
+        private static List<Products> products = new List<Products>
             {
                 new Products {
                     Id = 1,
@@ -32,32 +28,32 @@ namespace SalesCampaign.Controllers
                     " which facilitate wider software, internet, etc.",
                 }
             };
+
+
+
+        // GET: api/<ProductsController>
+        [HttpGet("Products")]
+        public async Task<ActionResult<List<Products>>> Get(int page = 0, int pageSize = 10)
+        {
+                            
             return Ok(products);
         }
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<List<Products>>> Get()
         {
-            return "value";
+            return Ok(products);
         }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<List<Products>>> Post(int page = 0, int pageSize = 10)
         {
+            products.Add(products);
+            return Ok(products);
         }
 
-        // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
