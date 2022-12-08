@@ -2,45 +2,46 @@ I want to be able to create, edit or delete a separate campaign for each of my p
 
 Sellers to enter the following information for each campaign:
 
-• Campaign name (mandatory)
+â€¢ Campaign name (mandatory)
 
-• Keywords (mandatory, pre-populated with typeahead)
+â€¢ Keywords (mandatory, pre-populated with typeahead)
 
-• Bid amount (mandatory, min amount )
+â€¢ Bid amount (mandatory, min amount )
 
-• Campaign fund (mandatory and deducted from their Emerald account 
+â€¢ Campaign fund (mandatory and deducted from their Emerald account 
 funds, new balance updated on screen
 
-• Status (on or off - mandatory)
+â€¢ Status (on or off - mandatory)
 
-• Town (can pick from pre-populated 
+â€¢ Town (can pick from pre-populated 
 
 dropdown list of towns)
 
-• Radius (mandatory in kilometres)
+â€¢ Radius (mandatory in kilometres)
 
 
 
 
 
 
-Chcê mieæ mo¿liwoœæ tworzenia, edytowania lub usuwania oddzielnej kampanii dla ka¿dego z moich produktów, które chcê sprzedaæ.
+ChcÄ™ mieÄ‡ moÅ¼liwoÅ›Ä‡ tworzenia, edytowania lub usuwania oddzielnej kampanii dla kaÅ¼dego z moich produktÃ³w, ktÃ³re chcÄ™ sprzedaÄ‡.
 
-Sprzedawcy musz¹ wprowadziæ nastêpuj¹ce informacje dla ka¿dej kampanii:
+Sprzedawcy muszÄ… wprowadziÄ‡ nastÄ™pujÄ…ce informacje dla kaÅ¼dej kampanii:
 
-- Nazwa kampanii (obowi¹zkowa)
+- Nazwa kampanii (obowiÄ…zkowa)
 
-- S³owa kluczowe (obowi¹zkowe, wstêpnie wype³nione z typeahead)
+- SÅ‚owa kluczowe (obowiÄ…zkowe, wstÄ™pnie wypeÅ‚nione z typeahead)
 
-- Kwota oferty (obowi¹zkowo, kwota minimalna)
+- Kwota oferty (obowiÄ…zkowo, kwota minimalna)
 
-- Fundusz kampanii (obowi¹zkowy i potr¹cany z konta Emerald 
-œrodki, nowe saldo aktualizowane na ekranie
+- Fundusz kampanii (obowiÄ…zkowy i potrÄ…cany z konta Emerald 
+Å›rodki, nowe saldo aktualizowane na ekranie
 
-- Status (w³¹czony lub wy³¹czony - obowi¹zkowy)
+- Status (wÅ‚Ä…czony lub wyÅ‚Ä…czony - obowiÄ…zkowy)
 
-- Miasto (mo¿na wybraæ z pre-populated 
+- Miasto (moÅ¼na wybraÄ‡ z gotowej 
 
 rozwijanej listy miast)
 
-- Promieñ (obowi¹zkowo w kilometrach)
+- PromieÅ„ (obowiÄ…zkowo w kilometrach)
+
