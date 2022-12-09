@@ -53,7 +53,7 @@ namespace SalesCampaign.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Campaign>>> GetCampaign(int id)
         {
-            var campaign = campaigns.Find(c => c.Id == id);
+            var campaign = await _context.Campaign.FindAsync(id);
             if (campaign == null) return NotFound();
             return Ok(campaign);
         }
