@@ -32,8 +32,8 @@ namespace SalesCampaign.Controllers
 
 
         // GET: api/<ProductsController>
-        [HttpGet("Products")]
-        public async Task<ActionResult<List<Products>>> Get(int page = 0, int pageSize = 10)
+        [HttpGet]
+        public async Task<ActionResult<List<Products>>> GetProducts(int page = 0, int pageSize = 10)
         {
                             
             return Ok(products);
@@ -41,16 +41,18 @@ namespace SalesCampaign.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Products>>> Get()
+        public async Task<ActionResult<List<Products>>> GetProduct(int id)
         {
-            return Ok(products);
+            var product = products.Find(p => p.Id == id);
+            if(product == null) return NotFound();
+            return Ok(product);
         }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public async Task<ActionResult<List<Products>>> Post(int page = 0, int pageSize = 10)
+        public async Task<ActionResult<List<Products>>> Post(Products product)
         {
-            products.Add(products);
+            products.Add(product);
             return Ok(products);
         }
 
