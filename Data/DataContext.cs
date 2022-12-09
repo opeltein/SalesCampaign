@@ -10,6 +10,7 @@ namespace SalesCampaign.Data
         }
 
         public DbSet<Products> Products { get; set; }
-
+        public DbSet<Campaign> Campaign { get; set; }
+        
     }
 }

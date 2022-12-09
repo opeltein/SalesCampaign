@@ -31,14 +31,19 @@ namespace SalesCampaign.Controllers
                 }
             };
 
+        private readonly DataContext _context;
 
+        public ProductsController(DataContext context)
+        {
+            _context = context;
+        }
 
         // GET: api/<ProductsController>
         [HttpGet]
         public async Task<ActionResult<List<Products>>> GetAll(int page = 0, int pageSize = 10)
         {
                             
-            return Ok(products);
+            return Ok(await _context.Products.ToListAsync());
         }
 
         // GET api/<ProductsController>/5

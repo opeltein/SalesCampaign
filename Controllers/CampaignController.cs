@@ -35,11 +35,18 @@ namespace SalesCampaign.Controllers
 
             };
 
+        private readonly DataContext _context;
+
+        public CampaignController(DataContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/<CampaignController>
         [HttpGet]
         public async Task<ActionResult<List<Campaign>>> GetCampaigns(int page = 0, int pageSize = 10)
         {
-            return Ok(campaigns);
+            return Ok(await _context.Campaign.ToListAsync());
         }
 
         // GET api/<CampaignController>/5
