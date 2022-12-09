@@ -18,6 +18,7 @@ namespace SalesCampaign.Controllers
                     " modern smartwatches provide a local touchscreen interface for daily use, " +
                     "while an associated smartphone app provides for management and telemetry, " +
                     "such as long-term biomonitoring",
+                    CampaignId = 1
                 },
                 new Products {
                     Id = 2,
@@ -26,6 +27,7 @@ namespace SalesCampaign.Controllers
                     " telephone and computing functions into one unit. They are distinguished from" +
                     " feature phones by their stronger hardware capabilities and extensive mobile operating systems," +
                     " which facilitate wider software, internet, etc.",
+                    CampaignId = 2
                 }
             };
 
@@ -33,7 +35,7 @@ namespace SalesCampaign.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<ActionResult<List<Products>>> GetProducts(int page = 0, int pageSize = 10)
+        public async Task<ActionResult<List<Products>>> GetAll(int page = 0, int pageSize = 10)
         {
                             
             return Ok(products);
@@ -41,7 +43,7 @@ namespace SalesCampaign.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Products>>> GetProduct(int id)
+        public async Task<ActionResult<List<Products>>> Get(int id)
         {
             var product = products.Find(p => p.Id == id);
             if(product == null) return NotFound();
@@ -56,6 +58,32 @@ namespace SalesCampaign.Controllers
             return Ok(products);
         }
 
-        
+        [HttpPut]
+
+        public async Task<ActionResult<List<Products>>> Put(Products request)
+        {
+            var product = products.Find(p => p.Id == request.Id);
+            if (product == null) return NotFound();
+
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.CampaignId = request.CampaignId;
+            
+
+            return Ok(product);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<List<Products>>> Delete(int id)
+        {
+            var product = products.Find(p => p.Id == id);
+            if (product == null) return NotFound();
+
+            products.Remove(product);
+
+            return Ok(product);
+
+        }
+
     }
 }

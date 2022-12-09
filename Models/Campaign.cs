@@ -21,10 +21,10 @@ namespace SalesCampaign.Models
         [Required]
         public int CampaignFund { get; set; }
         
-        public bool Status { get; set; }
+        public bool StatusON { get; set; }
         public int RadiusKm { get; set; }
 
-        // [JsonIgnore]
+         [JsonIgnore]
         //public virtual List<Town> Town { get; set; } 
 
         public virtual List<Products> Products { get; set; }

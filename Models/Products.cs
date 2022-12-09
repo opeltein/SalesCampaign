@@ -10,6 +10,7 @@ namespace SalesCampaign.Models
         public string Description { get; set; } =String.Empty;
 
         [JsonIgnore]
-        public virtual List<Campaign> Campaign { get; set; }
+        public virtual Campaign Campaign { get; set; }
+        public int CampaignId { get; set; }
     }
 }
