@@ -59,8 +59,10 @@ namespace SalesCampaign.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Products>>> Post(Products product)
         {
-            products.Add(product);
-            return Ok(products);
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();  
+
+            return Ok(await _context.Products.ToListAsync());
         }
 
         [HttpPut]

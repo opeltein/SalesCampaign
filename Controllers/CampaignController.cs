@@ -60,8 +60,12 @@ namespace SalesCampaign.Controllers
 
         // POST api/<CampaignController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<List<Campaign>>> Post(Campaign campaign)
         {
+            _context.Campaign.Add(campaign);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Campaign.ToListAsync());
         }
 
         // PUT api/<CampaignController>/5
