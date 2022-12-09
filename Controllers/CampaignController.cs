@@ -48,7 +48,7 @@ namespace SalesCampaign.Controllers
         {
             var campaign = campaigns.Find(c => c.Id == id);
             if (campaign == null) return NotFound();
-            return Ok(campaigns);
+            return Ok(campaign);
         }
 
         // POST api/<CampaignController>

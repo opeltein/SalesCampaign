@@ -73,7 +73,7 @@ namespace SalesCampaign.Controllers
             return Ok(product);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Products>>> Delete(int id)
         {
             var product = products.Find(p => p.Id == id);
@@ -81,7 +81,7 @@ namespace SalesCampaign.Controllers
 
             products.Remove(product);
 
-            return Ok(product);
+            return Ok(products);
 
         }
 
