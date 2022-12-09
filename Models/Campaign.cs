@@ -12,6 +12,7 @@ namespace SalesCampaign.Models
         
         public int Id { get; set; }
 
+
         [Required]
         public string Name { get; set; } = string.Empty;
         [Required]
@@ -30,7 +31,7 @@ namespace SalesCampaign.Models
         public virtual List<Products> Products { get; set; }
 
 
-
+        //Aplikacja wymaga przy POST dodania listy 
 
 
     }
