@@ -9,31 +9,7 @@ namespace SalesCampaign.Controllers
     [ApiController]
     public class CampaignController : ControllerBase
     {
-        private static List<Campaign> campaigns = new List<Campaign>
-            {
-                new Campaign {
-                    Id = 1,
-                    Name = "Christmas price cut in Poland",
-                    Keywords = "Christmas",
-                    BitAmount = 12.218m,
-                    CampaignFund = 25 ,
-                    StatusON = true ,
-                    RadiusKm = 100 ,
-
-                },
-
-                new Campaign {
-                    Id = 2,
-                    Name = "Christmas price cut for all",
-                    Keywords = "Christmas,forAll,",
-                    BitAmount = 166.218m,
-                    CampaignFund = 105 ,
-                    StatusON = false ,
-                    RadiusKm = 1000 ,
-
-                }
-
-            };
+        private static List<Campaign> campaigns = new List<Campaign>{};
 
         private readonly DataContext _context;
 
@@ -44,8 +20,11 @@ namespace SalesCampaign.Controllers
 
         // GET: api/<CampaignController>
         [HttpGet]
-        public async Task<ActionResult<List<Campaign>>> GetCampaigns(int page = 0, int pageSize = 10)
+        public async Task<ActionResult<List<Campaign>>> GetCampaigns(int id)
         {
+            var campaign = await _context.Campaign.FindAsync(id);
+            if (campaign == null) return NotFound();
+
             return Ok(await _context.Campaign.ToListAsync());
         }
 
@@ -70,14 +49,36 @@ namespace SalesCampaign.Controllers
 
         // PUT api/<CampaignController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult<List<Campaign>>> PutCampaign(Campaign request)
         {
+            var dbCampaign = await _context.Campaign.FindAsync(request.Id);
+            if (dbCampaign == null) return NotFound();
+
+            dbCampaign.Name = request.Name;
+            dbCampaign.Keywords = request.Keywords;
+            dbCampaign.BitAmount = request.BitAmount;
+            dbCampaign.CampaignFund = request.CampaignFund;
+            dbCampaign.StatusON = request.StatusON;
+            dbCampaign.RadiusKm = request.RadiusKm;
+            dbCampaign.Products = request.Products;
+
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Campaign.ToListAsync());
+
         }
 
         // DELETE api/<CampaignController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult<List<Campaign>>> DeleteCampaig(int id)
         {
+            var dbCampaig = await _context.Campaign.FindAsync(id);
+            if (dbCampaig == null) return NotFound();
+
+
+            _context.Campaign.Remove(dbCampaig);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Campaign.ToListAsync());
+
         }
     }
 }

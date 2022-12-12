@@ -9,27 +9,7 @@ namespace SalesCampaign.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private static List<Products> products = new List<Products>
-            {
-                new Products {
-                    Id = 1,
-                    Name = "Smartwatch" ,
-                    Description = "A smartwatch is a wearable computer in the form of a watch;" +
-                    " modern smartwatches provide a local touchscreen interface for daily use, " +
-                    "while an associated smartphone app provides for management and telemetry, " +
-                    "such as long-term biomonitoring",
-                    CampaignId = 1
-                },
-                new Products {
-                    Id = 2,
-                    Name = "Smartphone" ,
-                    Description = "A smartphone is a portable computer device that combines mobile" +
-                    " telephone and computing functions into one unit. They are distinguished from" +
-                    " feature phones by their stronger hardware capabilities and extensive mobile operating systems," +
-                    " which facilitate wider software, internet, etc.",
-                    CampaignId = 2
-                }
-            };
+        private static List<Products> products = new List<Products>{};
 
         private readonly DataContext _context;
 
@@ -40,7 +20,7 @@ namespace SalesCampaign.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<ActionResult<List<Products>>> GetAll(int page = 0, int pageSize = 10)
+        public async Task<ActionResult<List<Products>>> GetAllProducts(int page = 0, int pageSize = 10)
         {
                             
             return Ok(await _context.Products.ToListAsync());
@@ -48,7 +28,7 @@ namespace SalesCampaign.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Products>>> Get(int id)
+        public async Task<ActionResult<List<Products>>> GetProducts(int id)
         {
             var product = products.Find(p => p.Id == id);
             if(product == null) return NotFound();
@@ -57,7 +37,7 @@ namespace SalesCampaign.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public async Task<ActionResult<List<Products>>> Post(Products product)
+        public async Task<ActionResult<List<Products>>> PostProducts(Products product)
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();  
@@ -67,28 +47,29 @@ namespace SalesCampaign.Controllers
 
         [HttpPut]
 
-        public async Task<ActionResult<List<Products>>> Put(Products request)
+        public async Task<ActionResult<List<Products>>> PutProducts(Products request)
         {
-            var product = products.Find(p => p.Id == request.Id);
-            if (product == null) return NotFound();
+            var dbProduct = await _context.Products.FindAsync(request.Id);
+            if (dbProduct == null) return NotFound();
 
-            product.Name = request.Name;
-            product.Description = request.Description;
-            product.CampaignId = request.CampaignId;
-            
+            dbProduct.Name = request.Name;
+            dbProduct.Description = request.Description;
+            dbProduct.CampaignId = request.CampaignId;
 
-            return Ok(product);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Products.ToListAsync());
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Products>>> Delete(int id)
+        public async Task<ActionResult<List<Products>>> DeleteProducts(int id)
         {
-            var product = products.Find(p => p.Id == id);
-            if (product == null) return NotFound();
+            var dbProduct = await _context.Products.FindAsync(id);
+            if (dbProduct == null) return NotFound();
+            
 
-            products.Remove(product);
-
-            return Ok(products);
+            _context.Products.Remove(dbProduct);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Products.ToListAsync());
 
         }
 
