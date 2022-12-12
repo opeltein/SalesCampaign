@@ -19,6 +19,7 @@ namespace SalesCampaign.Models
         [Required]
         public string Name { get; set; } = string.Empty;
         [Required]
+        //Typeahead musiał by zostać zaimplementowany w view model(nie dotyczy w tym wypadku)
         public string Keywords { get; set; } = string.Empty;
         [Required]
         public decimal BitAmount { get; set; }
