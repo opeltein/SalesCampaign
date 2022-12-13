@@ -14,5 +14,7 @@ namespace SalesCampaign.Data
 
         public DbSet<Emerald> Emerald { get; set; }
 
+        public DbSet<Town> Town { get; set; }
+
     }
 }
