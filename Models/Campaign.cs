@@ -21,8 +21,9 @@ namespace SalesCampaign.Models
         [Required]
         //Typeahead musiał by zostać zaimplementowany w view model(nie dotyczy w tym wypadku)
         public string Keywords { get; set; } = string.Empty;
-        [Required]
-        public decimal BitAmount { get; set; }
+
+        [Required, Range((double)10.0m, (double)decimal.MaxValue)]
+        public decimal BitAmount  { get; set; }
         [Required]
         public int CampaignFund { get; set; }
         
@@ -30,12 +31,12 @@ namespace SalesCampaign.Models
         public int RadiusKm { get; set; }
 
          [JsonIgnore]
-        //public virtual List<Town> Town { get; set; } 
+        public virtual List<Town> Town { get; set; } 
 
         public virtual List<Products> Products { get; set; }
 
 
-        //Aplikacja wymaga przy POST dodania listy 
+        
 
 
     }

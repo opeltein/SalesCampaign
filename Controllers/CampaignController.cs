@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesCampaign.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace SalesCampaign.Controllers
 {
@@ -60,7 +60,9 @@ namespace SalesCampaign.Controllers
             dbCampaign.CampaignFund = request.CampaignFund;
             dbCampaign.StatusON = request.StatusON;
             dbCampaign.RadiusKm = request.RadiusKm;
+            dbCampaign.Town = request.Town;
             dbCampaign.Products = request.Products;
+            
 
             await _context.SaveChangesAsync();
             return Ok(await _context.Campaign.ToListAsync());
